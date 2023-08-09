@@ -5,7 +5,7 @@ const Blog = ({ blog }) => {
 
   return (
     <>
-      <div className='container mx-auto max-w-4xl p-8 border-b-2 border-dashed border-b-white'>
+      <div className='p-8 border-b-2 border-dashed border-b-white'>
         <h2 className='text-lg font-semibold'>
           <a href='0'>{blog.title}</a>
         </h2>

@@ -1,5 +1,11 @@
+import Container from './Container';
+
 const BlogForm = () => {
-  return <h1>sup</h1>;
+  return (
+    <Container semantic='main'>
+      <h1 className='text-white'>sup</h1>
+    </Container>
+  );
 };
 
 export default BlogForm;

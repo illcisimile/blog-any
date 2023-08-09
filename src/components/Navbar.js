@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 
+import Container from './Container';
+
 const Navbar = () => {
   return (
-    <header>
-      <nav className='container mx-auto max-w-4xl p-8 flex justify-between mb-8 flex-wrap'>
+    <Container semantic='header'>
+      <nav className='p-8 flex justify-between mb-8 flex-wrap'>
         <div>
           <h1 className='text-2xl font-bold'>
             <Link to='/'>blog: any</Link>
@@ -22,7 +24,7 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
-    </header>
+    </Container>
   );
 };
 
