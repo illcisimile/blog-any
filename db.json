@@ -1,0 +1,60 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Getting Started with Blogging",
+      "description": "Learn how to start your own blog and share your thoughts with the world.",
+      "author": "John Doe",
+      "tags": ["Blogging", "Writing", "Beginners"],
+      "createdAt": "2022-01-15T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "title": "The Art of Productivity",
+      "description": "Discover effective strategies to boost your productivity and achieve your goals.",
+      "author": "Jane Smith",
+      "tags": ["Productivity", "Self-Care", "Personal Development"],
+      "createdAt": "2022-03-10T08:45:00Z"
+    },
+    {
+      "id": 3,
+      "title": "Exploring Exotic Destinations",
+      "description": "Embark on a journey to breathtaking travel destinations around the world.",
+      "author": "Alex Johnson",
+      "tags": ["Travel", "Adventure", "Exploration"],
+      "createdAt": "2022-05-20T14:20:00Z"
+    },
+    {
+      "id": 4,
+      "title": "Delicious Homemade Recipes",
+      "description": "Satisfy your taste buds with these mouthwatering homemade recipes for every occasion.",
+      "author": "Maria Rodriguez",
+      "tags": ["Food", "Cooking", "Recipes"],
+      "createdAt": "2022-07-08T12:10:00Z"
+    },
+    {
+      "id": 5,
+      "title": "Getting Started with JSON Server",
+      "description": "Learn how to set up and use JSON Server for creating a mock API.",
+      "author": "John Doe",
+      "tags": ["JSON", "API", "Mocking", "Server"],
+      "createdAt": "2023-08-01T10:00:00Z"
+    },
+    {
+      "id": 6,
+      "title": "Mastering RESTful APIs",
+      "description": "A comprehensive guide to designing and implementing RESTful APIs.",
+      "author": "Jane Smith",
+      "tags": ["REST", "API", "Design", "Web"],
+      "createdAt": "2023-07-15T14:30:00Z"
+    },
+    {
+      "id": 7,
+      "title": "JavaScript Fundamentals for Beginners",
+      "description": "Build a strong foundation in JavaScript with this beginner-friendly tutorial.",
+      "author": "Alex Johnson",
+      "tags": ["JavaScript", "Programming", "Basics"],
+      "createdAt": "2023-06-20T09:15:00Z"
+    }
+  ]
+}
