@@ -18,7 +18,7 @@ const BlogList = () => {
   return (
     <>
       <Helmet>
-        <title>blog: any</title>
+        <title>home / blog: any</title>
       </Helmet>
       <Container semantic='main'>
         {blogs.map((blog) => (
