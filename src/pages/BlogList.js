@@ -1,24 +1,13 @@
-import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-
-import blogService from '../services/blogs';
 
 import Blog from '../components/Blog';
 import Container from '../components/Container';
 
-const BlogList = () => {
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    blogService.getBlogs().then((blogs) => {
-      setBlogs(blogs);
-    });
-  }, []);
-
+const BlogList = ({ blogs }) => {
   return (
     <>
       <Helmet>
-        <title>home / blog: any</title>
+        <title>home | blog: any</title>
       </Helmet>
       <Container semantic='main'>
         {blogs.map((blog) => (

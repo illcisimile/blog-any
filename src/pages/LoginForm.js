@@ -1,27 +1,40 @@
 import { Helmet } from 'react-helmet-async';
 import { useField } from '../hooks';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../reducers/userReducer';
+import { useNavigate } from 'react-router-dom';
 
 import Container from '../components/Container';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const username = useField('text');
   const password = useField('password');
 
-  const handleSubmit = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
-    console.log(username.input.value, password.input.value);
+    const credentials = {
+      username: username.input.value,
+      password: password.input.value,
+    };
+
+    dispatch(loginUser(credentials))
+      .then(() => navigate('/'))
+      .catch((error) => console.log(error));
   };
 
   return (
     <>
       <Helmet>
-        <title>log in / blog: any</title>
+        <title>log in | blog: any</title>
       </Helmet>
       <Container semantic='main'>
         <div className='flex flex-col items-center p-8'>
           <h1 className='mb-8 text-xl'>log in to your account</h1>
-          <form>
+          <form onSubmit={handleLogin}>
             <div className='mb-4'>
               <label className='block text-center'>username</label>
               <input
@@ -41,7 +54,6 @@ const LoginForm = () => {
             <button
               className='w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-500'
               type='submit'
-              onClick={handleSubmit}
             >
               log in
             </button>

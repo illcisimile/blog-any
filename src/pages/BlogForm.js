@@ -1,6 +1,10 @@
 import { useState, useRef } from 'react';
 import { useField } from '../hooks';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { newBlog } from '../reducers/blogReducer';
 
 import Container from '../components/Container';
 import BlogEditor from '../components/BlogEditor';
@@ -13,14 +17,22 @@ const BlogForm = () => {
   const [tags, setTags] = useState([]);
   const tagRef = useRef(null);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(
-      title.input.value,
-      description.input.value,
-      content.input.value,
+
+    const blog = {
+      title: title.input.value,
+      description: description.input.value,
+      content: content.input.value,
       tags,
-    );
+    };
+
+    dispatch(newBlog(blog))
+      .then(() => navigate('/'))
+      .catch((error) => console.log(error));
   };
 
   const handleTag = (event) => {
@@ -47,7 +59,7 @@ const BlogForm = () => {
   return (
     <>
       <Helmet>
-        <title>new blog / blog: any</title>
+        <title>new blog | blog: any</title>
       </Helmet>
       <Container semantic='main'>
         <div className='p-8'>

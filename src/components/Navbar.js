@@ -1,9 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../reducers/userReducer';
+import { useNavigate } from 'react-router-dom';
 
 import Container from './Container';
 
-const Navbar = (props) => {
-  console.log(props);
+const Navbar = ({ user }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate('/');
+  };
 
   return (
     <Container semantic='header'>
@@ -15,7 +24,7 @@ const Navbar = (props) => {
           <p className='text-lg'>my pleasure, let's rock</p>
         </div>
         <ul className='flex items-center gap-4'>
-          {props.user ? (
+          {user ? (
             <>
               <li>
                 <Link to='/new-blog'>new blog</Link>
@@ -24,7 +33,13 @@ const Navbar = (props) => {
                 <Link to='/'>profile</Link>
               </li>
               <li>
-                <Link to='/'>log out</Link>
+                <button
+                  className='text-white hover:underline'
+                  type='submit'
+                  onClick={handleLogout}
+                >
+                  log out
+                </button>
               </li>
             </>
           ) : (
