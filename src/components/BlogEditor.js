@@ -7,6 +7,7 @@ const BlogEditor = ({ html, handleChange }) => {
     flex: 'flex-wrap',
     resize: 'vertical',
     height: 500,
+    border: '1px solid #d1d5db',
   };
 
   return (
