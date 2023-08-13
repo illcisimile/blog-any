@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+
 import blogService from '../services/blogs';
 
 import Blog from '../components/Blog';
@@ -14,11 +16,16 @@ const BlogList = () => {
   }, []);
 
   return (
-    <Container semantic='main'>
-      {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} />
-      ))}
-    </Container>
+    <>
+      <Helmet>
+        <title>blog: any</title>
+      </Helmet>
+      <Container semantic='main'>
+        {blogs.map((blog) => (
+          <Blog key={blog.id} blog={blog} />
+        ))}
+      </Container>
+    </>
   );
 };
 

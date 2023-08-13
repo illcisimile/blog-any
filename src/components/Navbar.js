@@ -5,7 +5,7 @@ import Container from './Container';
 const Navbar = () => {
   return (
     <Container semantic='header'>
-      <nav className='p-8 flex justify-between mb-8 flex-wrap'>
+      <nav className='mb-8 flex flex-wrap justify-between p-8'>
         <div>
           <h1 className='text-2xl font-bold'>
             <Link to='/'>blog: any</Link>

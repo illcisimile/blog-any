@@ -5,7 +5,7 @@ const Blog = ({ blog }) => {
 
   return (
     <>
-      <div className='p-8 border-b-2 border-dashed border-b-white'>
+      <div className='border-b-2 border-dashed border-b-white p-8'>
         <h2 className='text-lg font-semibold'>
           <a href='0'>{blog.title}</a>
         </h2>
@@ -14,7 +14,7 @@ const Blog = ({ blog }) => {
         <div className='flex justify-between'>
           <div className='flex flex-wrap gap-2'>
             {blog.tags.map((tag) => (
-              <a key={tag} href='0' className='text-sm bg-gray-950 px-2 py-1'>
+              <a key={tag} href='0' className='bg-gray-950 px-2 py-1 text-sm'>
                 {tag}
               </a>
             ))}
