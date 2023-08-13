@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import { useField } from '../hooks';
 
-import Container from './Container';
-import BlogEditor from './BlogEditor';
+import Container from '../components/Container';
+import BlogEditor from '../components/BlogEditor';
 
 const BlogForm = () => {
   const title = useField('text');
@@ -64,7 +64,7 @@ const BlogForm = () => {
             />
           </div>
           <div className='mb-4'>
-            <label className='mb-1 block'>content</label>
+            <label className='mb-2 block'>content</label>
             <BlogEditor
               html={content.input.value}
               handleChange={content.input.onChange}

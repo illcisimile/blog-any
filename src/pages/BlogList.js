@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Blog from './Blog';
 import blogService from '../services/blogs';
 
-import Container from './Container';
+import Blog from '../components/Blog';
+import Container from '../components/Container';
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
