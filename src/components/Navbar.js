@@ -34,7 +34,7 @@ const Navbar = ({ user }) => {
               </li>
               <li>
                 <button
-                  className='text-white hover:underline'
+                  className='hover:underline'
                   type='submit'
                   onClick={handleLogout}
                 >

@@ -52,8 +52,8 @@ const BlogForm = () => {
     tagRef.current.focus();
   };
 
-  const removeTag = (val) => {
-    console.log(val, '1');
+  const removeTag = (tag) => {
+    setTags(tags.filter((t) => t !== tag));
   };
 
   return (
@@ -69,7 +69,7 @@ const BlogForm = () => {
               <label className='block'>title</label>
               <input
                 {...title.input}
-                className='mt-2 w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
+                className='mt-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='Hello, world!'
               />
             </div>
@@ -77,7 +77,7 @@ const BlogForm = () => {
               <label className='block'>description</label>
               <input
                 {...description.input}
-                className='mt-2 w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
+                className='mt-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='Some say polymath; some say dilettante. I specialize in everything.'
               />
             </div>
@@ -92,7 +92,7 @@ const BlogForm = () => {
               <label className='block'>enter tag</label>
               <input
                 {...tag.input}
-                className='mt-2 w-full rounded-md border border-r-0 border-l-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
+                className='mt-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='press Enter to add a new tag'
                 ref={tagRef}
                 onKeyUp={handleTag}
@@ -104,16 +104,30 @@ const BlogForm = () => {
                 {tags.map((t) => (
                   <div
                     key={t}
-                    className='bg-gray-950 px-2 py-1 text-sm text-white'
+                    className='flex gap-1 rounded-full border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white'
                     onClick={() => removeTag(t)}
                   >
-                    {t}
+                    <p>{t}</p>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth='1.5'
+                      stroke='currentColor'
+                      className='h-5 w-5'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M6 18L18 6M6 6l12 12'
+                      />
+                    </svg>
                   </div>
                 ))}
               </div>
             )}
             <button
-              className='w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-500'
+              className='w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 hover:bg-black hover:text-white'
               type='button'
               onClick={handleSubmit}
             >

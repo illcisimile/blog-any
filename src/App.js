@@ -36,7 +36,7 @@ const App = () => {
         <Route path='/' element={<BlogList blogs={blogs} />} />
         <Route
           path='/new-blog'
-          element={user ? <BlogForm /> : <Navigate replace to='/login' />}
+          element={user ? <BlogForm /> : <Navigate replace to='/' />}
         />
         <Route path='/login' element={<LoginForm />} />
         <Route path='/blog/:id' element={<BlogInfo blog={blog} />} />

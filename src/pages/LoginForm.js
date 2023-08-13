@@ -39,7 +39,7 @@ const LoginForm = () => {
               <label className='block text-center'>username</label>
               <input
                 {...username.input}
-                className='mt-2 w-96 rounded-md border border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='jack'
               />
             </div>
@@ -47,12 +47,12 @@ const LoginForm = () => {
               <label className='block text-center'>password</label>
               <input
                 {...password.input}
-                className='mt-2 w-96 rounded-md border border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='****'
               />
             </div>
             <button
-              className='w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-500'
+              className='mt-4 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 hover:bg-black hover:text-white'
               type='submit'
             >
               log in

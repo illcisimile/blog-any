@@ -4,7 +4,7 @@ import { formatDate } from '../utils';
 const Blog = ({ blog }) => {
   return (
     <>
-      <div className='border-b-2 border-dashed border-b-white p-8'>
+      <div className='border-b-2 border-dashed border-black p-8'>
         <h2 className='text-lg font-semibold'>
           <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
         </h2>
@@ -13,7 +13,11 @@ const Blog = ({ blog }) => {
         <div className='flex justify-between'>
           <div className='flex flex-wrap gap-2'>
             {blog.tags.map((tag) => (
-              <a key={tag} href='0' className='bg-gray-950 px-2 py-1 text-sm'>
+              <a
+                key={tag}
+                href='0'
+                className='rounded-full border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white'
+              >
                 {tag}
               </a>
             ))}

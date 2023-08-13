@@ -22,7 +22,11 @@ const BlogInfo = ({ blog }) => {
           <p className='text-sm'>by {blog.author.name}</p>
           <div className='my-2 flex flex-wrap gap-2'>
             {blog.tags.map((tag) => (
-              <a key={tag} href='0' className='bg-gray-950 px-2 py-1 text-sm'>
+              <a
+                key={tag}
+                href='0'
+                className='rounded-full border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white'
+              >
                 {tag}
               </a>
             ))}
@@ -38,10 +42,7 @@ const BlogInfo = ({ blog }) => {
               </p>
             )}
           </div>
-          <div
-            className='text-white'
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          />
+          <div dangerouslySetInnerHTML={{ __html: blog.content }} />
         </div>
       </Container>
     </>
