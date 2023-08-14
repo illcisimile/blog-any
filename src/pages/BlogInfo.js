@@ -20,7 +20,8 @@ const BlogInfo = ({ blog }) => {
         <div className='p-8'>
           <h2 className='text-lg font-semibold'>{blog.title} </h2>
           <p className='text-sm'>by {blog.author.name}</p>
-          <div className='my-2 flex flex-wrap gap-2'>
+          <p className='my-2'>{blog.description}</p>
+          <div className='flex flex-wrap gap-2'>
             {blog.tags.map((tag) => (
               <a
                 key={tag}
