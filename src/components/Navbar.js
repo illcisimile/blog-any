@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '../reducers/userReducer';
+import { signOutUser } from '../reducers/userReducer';
 import { useNavigate } from 'react-router-dom';
 
 import Container from './Container';
@@ -9,8 +9,8 @@ const Navbar = ({ user }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
+  const handleSignOut = () => {
+    dispatch(signOutUser());
     navigate('/');
   };
 
@@ -30,13 +30,15 @@ const Navbar = ({ user }) => {
                 <Link to='/new-blog'>new blog</Link>
               </li>
               <li>
-                <Link to='/'>profile ({user.username})</Link>
+                <Link to={`/profile/${user.username}`}>
+                  profile ({user.username})
+                </Link>
               </li>
               <li>
                 <button
                   className='hover:underline'
                   type='submit'
-                  onClick={handleLogout}
+                  onClick={handleSignOut}
                 >
                   log out
                 </button>
@@ -45,7 +47,10 @@ const Navbar = ({ user }) => {
           ) : (
             <>
               <li>
-                <Link to='/login'>log in</Link>
+                <Link to='/signin'>sign in</Link>
+              </li>
+              <li>
+                <Link to='/signup'>sign up</Link>
               </li>
             </>
           )}

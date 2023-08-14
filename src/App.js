@@ -6,12 +6,13 @@ import { checkIfLoggedIn } from './reducers/userReducer';
 
 import BlogList from './pages/BlogList';
 import BlogForm from './pages/BlogForm';
-import LoginForm from './pages/LoginForm';
+import SignInForm from './pages/SignInForm';
 import BlogInfo from './pages/BlogInfo';
 
 import Navbar from './components/Navbar';
 import BreakpointIndicator from './components/BreakpointIndicator';
-import RegisterForm from './pages/RegisterForm';
+import SignUpForm from './pages/SignUpForm';
+import Profile from './pages/Profile';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,8 +26,13 @@ const App = () => {
   }, [dispatch]);
 
   const blogMatch = useMatch('/blog/:id');
-  const blog = blogMatch
+  const foundBlog = blogMatch
     ? blogs.find((blog) => blog.id === blogMatch.params.id)
+    : null;
+
+  const userMatch = useMatch('/profile/:username');
+  const foundUserBlogs = userMatch
+    ? blogs.filter((blog) => blog.author.username === userMatch.params.username)
     : null;
 
   return (
@@ -37,17 +43,21 @@ const App = () => {
         <Route path='/' element={<BlogList blogs={blogs} />} />
         <Route
           path='/new-blog'
-          element={user ? <BlogForm /> : <Navigate replace to='/login' />}
+          element={user ? <BlogForm /> : <Navigate replace to='/signin' />}
         />
         <Route
-          path='/login'
-          element={!user ? <LoginForm /> : <Navigate replace to='/' />}
+          path='/signin'
+          element={!user ? <SignInForm /> : <Navigate replace to='/' />}
         />
         <Route
-          path='/register'
-          element={!user ? <RegisterForm /> : <Navigate replace to='/' />}
+          path='/signup'
+          element={!user ? <SignUpForm /> : <Navigate replace to='/' />}
         />
-        <Route path='/blog/:id' element={<BlogInfo blog={blog} />} />
+        <Route path='/blog/:id' element={<BlogInfo blog={foundBlog} />} />
+        <Route
+          path='/profile/:username'
+          element={<Profile userBlogs={foundUserBlogs} />}
+        />
       </Routes>
     </>
   );

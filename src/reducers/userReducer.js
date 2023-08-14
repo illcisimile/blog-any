@@ -26,9 +26,9 @@ export const checkIfLoggedIn = () => {
   };
 };
 
-export const loginUser = (credentials) => {
+export const signInUser = (credentials) => {
   return async (dispatch) => {
-    await userService.login(credentials).then((user) => {
+    await userService.signIn(credentials).then((user) => {
       dispatch(setUser(user));
       localStorage.setItem('user', JSON.stringify(user));
       blogService.setToken(user.token);
@@ -36,7 +36,7 @@ export const loginUser = (credentials) => {
   };
 };
 
-export const logoutUser = () => {
+export const signOutUser = () => {
   return (dispatch) => {
     localStorage.removeItem('user');
     dispatch(setUser(null));
@@ -46,7 +46,7 @@ export const logoutUser = () => {
 
 export const registerUser = (credentials) => {
   return async (dispatch) => {
-    await userService.register(credentials).then((user) => {
+    await userService.signUp(credentials).then((user) => {
       console.log(user);
     });
   };
