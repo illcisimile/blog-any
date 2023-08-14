@@ -82,7 +82,7 @@ const BlogForm = () => {
       </Helmet>
       <Container semantic='main'>
         <div className='p-8'>
-          <h1 className='mb-4 text-center text-xl'>create a new blog</h1>
+          <h1 className='mb-4 text-center text-xl'>new blog</h1>
           <form>
             <div className='mb-4'>
               <label className='block'>title</label>
