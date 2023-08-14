@@ -1,12 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import { useField } from '../hooks';
 import { useEffect, useState, useRef } from 'react';
+import { updateBlog } from '../reducers/blogReducer';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Container from '../components/Container';
 import BlogEditor from '../components/BlogEditor';
 import Loading from '../components/Loading';
 
 const BlogUpdate = ({ blog }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const title = useField('text');
   const description = useField('text');
   const content = useField('text');
@@ -31,12 +37,16 @@ const BlogUpdate = ({ blog }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
 
-    console.log(
-      title.input.value,
-      description.input.value,
-      //   content.input.value,
+    const updatedBlogObject = {
+      title: title.input.value,
+      description: description.input.value,
+      content: content.input.value,
       tags,
-    );
+    };
+
+    dispatch(updateBlog(blog.id, updatedBlogObject))
+      .then(() => navigate(`/blog/${blog.id}`))
+      .catch((error) => console.log(error));
   };
 
   const handleTag = (event) => {

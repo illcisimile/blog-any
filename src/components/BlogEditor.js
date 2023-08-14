@@ -6,7 +6,7 @@ const BlogEditor = ({ html, handleChange }) => {
     display: 'flex',
     flex: 'flex-wrap',
     resize: 'vertical',
-    height: 500,
+    height: 'auto',
     border: '2px solid #d1d5db',
   };
 
