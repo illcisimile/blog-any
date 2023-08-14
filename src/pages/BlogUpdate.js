@@ -1,15 +1,12 @@
-import { useState, useRef } from 'react';
-import { useField } from '../hooks';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
-
-import { useDispatch } from 'react-redux';
-import { newBlog } from '../reducers/blogReducer';
+import { useField } from '../hooks';
+import { useEffect, useState, useRef } from 'react';
 
 import Container from '../components/Container';
 import BlogEditor from '../components/BlogEditor';
+import Loading from '../components/Loading';
 
-const BlogForm = () => {
+const BlogUpdate = ({ blog }) => {
   const title = useField('text');
   const description = useField('text');
   const content = useField('text');
@@ -17,22 +14,29 @@ const BlogForm = () => {
   const [tags, setTags] = useState([]);
   const tagRef = useRef(null);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (blog) {
+      title.set(blog.title);
+      description.set(blog.description);
+      content.set(blog.content);
+      setTags(tags.concat(blog.tags));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blog]);
 
-  const handlePublish = (event) => {
+  if (!blog) {
+    return <Loading />;
+  }
+
+  const handleUpdate = (event) => {
     event.preventDefault();
 
-    const blog = {
-      title: title.input.value,
-      description: description.input.value,
-      content: content.input.value,
+    console.log(
+      title.input.value,
+      description.input.value,
+      //   content.input.value,
       tags,
-    };
-
-    dispatch(newBlog(blog))
-      .then(() => navigate('/'))
-      .catch((error) => console.log(error));
+    );
   };
 
   const handleTag = (event) => {
@@ -59,11 +63,11 @@ const BlogForm = () => {
   return (
     <>
       <Helmet>
-        <title>new blog | blog: any</title>
+        <title>update blog {blog.title}</title>
       </Helmet>
       <Container semantic='main'>
         <div className='p-8'>
-          <h1 className='mb-4 text-center text-xl'>create a new blog</h1>
+          <h1 className='mb-4 text-center text-xl'>update blog</h1>
           <form>
             <div className='mb-4'>
               <label className='block'>title</label>
@@ -129,9 +133,9 @@ const BlogForm = () => {
             <button
               className='w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 hover:bg-black hover:text-white'
               type='button'
-              onClick={handlePublish}
+              onClick={handleUpdate}
             >
-              publish
+              update
             </button>
           </form>
         </div>
@@ -140,4 +144,4 @@ const BlogForm = () => {
   );
 };
 
-export default BlogForm;
+export default BlogUpdate;

@@ -8,5 +8,6 @@ export const useField = (type) => {
   return {
     input: { type, value, onChange },
     reset: () => setValue(''),
+    set: (value) => setValue(value),
   };
 };
