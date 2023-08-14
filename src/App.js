@@ -14,6 +14,7 @@ import Navbar from './components/Navbar';
 import BreakpointIndicator from './components/BreakpointIndicator';
 import SignUpForm from './pages/SignUpForm';
 import Profile from './pages/Profile';
+import ToastNotification from './components/ToastNotification';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
   return (
     <>
       <BreakpointIndicator />
+      <ToastNotification />
       <Navbar user={user} />
       <Routes>
         <Route path='/' element={<BlogList blogs={blogs} />} />

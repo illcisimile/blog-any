@@ -8,6 +8,7 @@ import { newBlog } from '../reducers/blogReducer';
 
 import Container from '../components/Container';
 import BlogEditor from '../components/BlogEditor';
+import { toast } from 'react-toastify';
 
 const BlogForm = () => {
   const title = useField('text');
@@ -32,7 +33,7 @@ const BlogForm = () => {
 
     dispatch(newBlog(blog))
       .then(() => navigate('/'))
-      .catch((error) => console.log(error));
+      .catch((_error) => toast.error('error creating new blog'));
   };
 
   const handleTag = (event) => {

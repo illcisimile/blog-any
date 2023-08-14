@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { updateBlog } from '../reducers/blogReducer';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import Container from '../components/Container';
 import BlogEditor from '../components/BlogEditor';
@@ -46,7 +47,7 @@ const BlogUpdate = ({ blog }) => {
 
     dispatch(updateBlog(blog.id, updatedBlogObject))
       .then(() => navigate(`/blog/${blog.id}`))
-      .catch((error) => console.log(error));
+      .catch((_error) => toast.error('error updating blog'));
   };
 
   const handleTag = (event) => {
