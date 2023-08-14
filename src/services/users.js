@@ -7,5 +7,10 @@ const login = async (credentials) => {
   return response.data;
 };
 
+const register = async (credentials) => {
+  const response = await axios.post(`${baseUrl}/register`, credentials);
+  return response.data;
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { login };
+export default { login, register };

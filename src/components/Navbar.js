@@ -30,7 +30,7 @@ const Navbar = ({ user }) => {
                 <Link to='/new-blog'>new blog</Link>
               </li>
               <li>
-                <Link to='/'>profile</Link>
+                <Link to='/'>profile ({user.username})</Link>
               </li>
               <li>
                 <button

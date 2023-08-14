@@ -44,4 +44,12 @@ export const logoutUser = () => {
   };
 };
 
+export const registerUser = (credentials) => {
+  return async (dispatch) => {
+    await userService.register(credentials).then((user) => {
+      console.log(user);
+    });
+  };
+};
+
 export default userSlice.reducer;

@@ -11,6 +11,7 @@ import BlogInfo from './pages/BlogInfo';
 
 import Navbar from './components/Navbar';
 import BreakpointIndicator from './components/BreakpointIndicator';
+import RegisterForm from './pages/RegisterForm';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,10 @@ const App = () => {
         <Route
           path='/login'
           element={!user ? <LoginForm /> : <Navigate replace to='/' />}
+        />
+        <Route
+          path='/register'
+          element={!user ? <RegisterForm /> : <Navigate replace to='/' />}
         />
         <Route path='/blog/:id' element={<BlogInfo blog={blog} />} />
       </Routes>
