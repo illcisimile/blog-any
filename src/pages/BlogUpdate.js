@@ -50,11 +50,6 @@ const BlogUpdate = ({ blog }) => {
       tags,
     };
 
-    titleMessage.reset();
-    descriptionMessage.reset();
-    contentMessage.reset();
-    tagMessage.reset();
-
     dispatch(updateBlog(blog.id, updatedBlogObject))
       .then(() => navigate(`/blog/${blog.id}`))
       .catch((error) => {
@@ -63,6 +58,7 @@ const BlogUpdate = ({ blog }) => {
         titleMessage.set(validationError.title);
         descriptionMessage.set(validationError.description);
         contentMessage.set(validationError.content);
+        tagMessage.set(null);
       });
   };
 

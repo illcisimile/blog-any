@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useField } from '../hooks';
+import { useField, useError } from '../hooks';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -16,6 +16,11 @@ const SignUpForm = () => {
   const password = useField('password');
   const confirmPassword = useField('password');
 
+  const nameMessage = useError();
+  const usernameMessage = useError();
+  const passwordMessage = useError();
+  const confirmPasswordMessage = useError();
+
   const handleRegister = (event) => {
     event.preventDefault();
 
@@ -28,7 +33,14 @@ const SignUpForm = () => {
 
     dispatch(registerUser(credentials))
       .then(() => navigate('/'))
-      .catch((_error) => toast.error('error signing up'));
+      .catch((error) => {
+        toast.error('error signing up');
+        const validationError = error.response.data.error;
+        nameMessage.set(validationError.name);
+        usernameMessage.set(validationError.username);
+        passwordMessage.set(validationError.password);
+        confirmPasswordMessage.set(validationError.confirmPassword);
+      });
   };
 
   return (
@@ -41,39 +53,49 @@ const SignUpForm = () => {
           <h1 className='mb-8 text-xl'>sign up to get started</h1>
           <form onSubmit={handleRegister}>
             <div className='mb-4'>
-              <label className='block text-center'>name</label>
+              <label className='my-2 block text-center'>name</label>
               <input
                 {...name.input}
-                className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='Jack Stratton'
               />
+              <p className='text-center text-red-600'>{nameMessage.error}</p>
             </div>
             <div className='mb-4'>
-              <label className='block text-center'>username</label>
+              <label className='my-2 block text-center'>username</label>
               <input
                 {...username.input}
-                className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='jack'
               />
+              <p className='text-center text-red-600'>
+                {usernameMessage.error}
+              </p>
             </div>
             <div className='mb-4'>
-              <label className='block text-center'>password</label>
+              <label className='my-2 block text-center'>password</label>
               <input
                 {...password.input}
-                className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='****'
               />
+              <p className='text-center text-red-600'>
+                {passwordMessage.error}
+              </p>
             </div>
             <div className='mb-4'>
-              <label className='block text-center'>confirm password</label>
+              <label className='my-2 block text-center'>confirm password</label>
               <input
                 {...confirmPassword.input}
-                className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='****'
               />
+              <p className='text-center text-red-600'>
+                {confirmPasswordMessage.error}
+              </p>
             </div>
             <div className='mb-4'>
-              <p className='text-center'>
+              <p className='my-2 text-center'>
                 back to{' '}
                 <Link to='/signin' className='underline'>
                   sign in

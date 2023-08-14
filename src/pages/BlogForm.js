@@ -36,11 +36,6 @@ const BlogForm = () => {
       tags,
     };
 
-    titleMessage.reset();
-    descriptionMessage.reset();
-    contentMessage.reset();
-    tagMessage.reset();
-
     dispatch(newBlog(blog))
       .then(() => navigate('/'))
       .catch((error) => {
@@ -49,6 +44,7 @@ const BlogForm = () => {
         titleMessage.set(validationError.title);
         descriptionMessage.set(validationError.description);
         contentMessage.set(validationError.content);
+        tagMessage.set(null);
       });
   };
 
