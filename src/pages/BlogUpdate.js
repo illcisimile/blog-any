@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useField } from '../hooks';
+import { useField, useError } from '../hooks';
 import { useEffect, useState, useRef } from 'react';
 import { updateBlog } from '../reducers/blogReducer';
 import { useDispatch } from 'react-redux';
@@ -20,6 +20,11 @@ const BlogUpdate = ({ blog }) => {
   const tag = useField('text');
   const [tags, setTags] = useState([]);
   const tagRef = useRef(null);
+
+  const titleMessage = useError();
+  const descriptionMessage = useError();
+  const contentMessage = useError();
+  const tagMessage = useError();
 
   useEffect(() => {
     if (blog) {
@@ -45,20 +50,33 @@ const BlogUpdate = ({ blog }) => {
       tags,
     };
 
+    titleMessage.reset();
+    descriptionMessage.reset();
+    contentMessage.reset();
+    tagMessage.reset();
+
     dispatch(updateBlog(blog.id, updatedBlogObject))
       .then(() => navigate(`/blog/${blog.id}`))
-      .catch((_error) => toast.error('error updating blog'));
+      .catch((error) => {
+        toast.error('error updating blog');
+        const validationError = error.response.data.error;
+        titleMessage.set(validationError.title);
+        descriptionMessage.set(validationError.description);
+        contentMessage.set(validationError.content);
+      });
   };
 
   const handleTag = (event) => {
     if (event.key !== 'Enter') return;
 
+    tagMessage.reset();
+
     if (tag.input.value === '') {
-      alert('cannot be empty');
+      tagMessage.set('tag cannot be empty');
     } else if (
       tags.find((t) => t.toLowerCase() === tag.input.value.toLowerCase())
     ) {
-      alert('already added');
+      tagMessage.set('tag already added');
     } else {
       setTags(tags.concat(tag.input.value));
     }
@@ -84,17 +102,19 @@ const BlogUpdate = ({ blog }) => {
               <label className='block'>title</label>
               <input
                 {...title.input}
-                className='mt-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
+                className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='Hello, world!'
               />
+              <p className='text-red-600'>{titleMessage.error}</p>
             </div>
             <div className='mb-4'>
               <label className='block'>description</label>
               <input
                 {...description.input}
-                className='mt-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
+                className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='Some say polymath; some say dilettante. I specialize in everything.'
               />
+              <p className='text-red-600'>{descriptionMessage.error}</p>
             </div>
             <div className='mb-4'>
               <label className='mb-2 block'>content</label>
@@ -102,16 +122,18 @@ const BlogUpdate = ({ blog }) => {
                 html={content.input.value}
                 handleChange={content.input.onChange}
               />
+              <p className='text-red-600'>{contentMessage.error}</p>
             </div>
             <div className='mb-4'>
               <label className='block'>enter tag</label>
               <input
                 {...tag.input}
-                className='mt-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
+                className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='press Enter to add a new tag'
                 ref={tagRef}
                 onKeyUp={handleTag}
               />
+              <p className='text-red-600'>{tagMessage.error}</p>
             </div>
             {tags.length > 0 && (
               <div className='mb-4 flex w-full flex-wrap items-center gap-2'>

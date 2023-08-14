@@ -11,3 +11,13 @@ export const useField = (type) => {
     set: (value) => setValue(value),
   };
 };
+
+export const useError = () => {
+  const [message, setMessage] = useState(null);
+
+  return {
+    error: message,
+    reset: () => setMessage(null),
+    set: (message) => setMessage(message),
+  };
+};

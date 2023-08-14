@@ -8,6 +8,7 @@ const BlogEditor = ({ html, handleChange }) => {
     resize: 'vertical',
     height: 'auto',
     border: '2px solid #d1d5db',
+    margin: '0.5rem 0 0.5rem 0',
   };
 
   return (
