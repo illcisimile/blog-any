@@ -4,13 +4,10 @@ import Container from '../components/Container';
 import UserBlog from '../components/UserBlog';
 
 const Profile = ({ userBlogs }) => {
-  //   console.log(userBlogs);
-  //   console.log(userBlogs.author);
-
   return (
     <>
       <Helmet>
-        <title>Profile | blog: any</title>
+        <title>profile | blog: any</title>
       </Helmet>
       <Container semantic='main'>
         {userBlogs.map((userBlog) => (
