@@ -27,7 +27,7 @@ const BlogInfo = ({ blog }) => {
               <h2 className='text-lg font-semibold'>{blog.title} </h2>
               <p className='text-sm'>by {blog.author.name}</p>
             </div>
-            {user.username === blog.author.username && (
+            {user && user.username === blog.author.username && (
               <Link
                 to={`/update/${blog.id}`}
                 className='rounded-full border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white'

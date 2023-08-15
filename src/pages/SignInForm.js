@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useField } from '../hooks';
+import { useField, useError } from '../hooks';
 import { useDispatch } from 'react-redux';
 import { signInUser } from '../reducers/userReducer';
 import { useNavigate, Link } from 'react-router-dom';
@@ -14,6 +14,9 @@ const SignInForm = () => {
   const username = useField('text');
   const password = useField('password');
 
+  const usernameMessage = useError();
+  const passwordMessage = useError();
+
   const handleSignIn = async (event) => {
     event.preventDefault();
 
@@ -24,7 +27,12 @@ const SignInForm = () => {
 
     dispatch(signInUser(credentials))
       .then(() => navigate('/'))
-      .catch((error) => toast.error(error.response.data.error));
+      .catch((error) => {
+        toast.error(error.response.data.error);
+        const validationError = error.response.data.error;
+        usernameMessage.set(validationError.username);
+        passwordMessage.set(validationError.password);
+      });
   };
 
   return (
@@ -43,6 +51,9 @@ const SignInForm = () => {
                 className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='jack'
               />
+              <p className='text-center text-red-600'>
+                {usernameMessage.error}
+              </p>
             </div>
             <div className='mb-4'>
               <label className='block text-center'>password</label>
@@ -51,6 +62,9 @@ const SignInForm = () => {
                 className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='****'
               />
+              <p className='text-center text-red-600'>
+                {passwordMessage.error}
+              </p>
             </div>
             <div className='mb-4'>
               <p className='text-center'>
