@@ -13,13 +13,13 @@ const Blog = ({ blog }) => {
         <div className='flex justify-between'>
           <div className='flex flex-wrap gap-2'>
             {blog.tags.map((tag) => (
-              <a
+              <Link
+                to={`/tag/${tag}`}
                 key={tag}
-                href='0'
                 className='rounded-full border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white'
               >
                 {tag}
-              </a>
+              </Link>
             ))}
           </div>
           <p>{formatDate(blog.createdAt).toLowerCase()}</p>

@@ -32,6 +32,11 @@ const App = () => {
     ? blogs.find((blog) => blog.id === blogMatch.params.blogId)
     : null;
 
+  const blogsWithTagMatch = useMatch('/tag/:tag');
+  const foundBlogsWithTag = blogsWithTagMatch
+    ? blogs.filter((blog) => blog.tags.includes(blogsWithTagMatch.params.tag))
+    : null;
+
   const userMatch = useMatch('/profile/:username');
   const foundUserBlogs = userMatch
     ? blogs.filter((blog) => blog.author.username === userMatch.params.username)
@@ -50,6 +55,11 @@ const App = () => {
       <Routes>
         <Route path='/' element={<BlogList blogs={blogs} />} />
         <Route path='/blog/:blogId' element={<BlogInfo blog={foundBlog} />} />
+        <Route
+          path='/tag/:tag'
+          element={<BlogList blogs={foundBlogsWithTag} />}
+        />
+
         <Route
           path='/signin'
           element={!user ? <SignInForm /> : <Navigate replace to='/' />}
