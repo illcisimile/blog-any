@@ -56,7 +56,7 @@ const SignUpForm = () => {
               <label className='my-2 block text-center'>name</label>
               <input
                 {...name.input}
-                className='my-2 mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='Jack Stratton'
               />
               <p className='text-center text-red-600'>{nameMessage.error}</p>
@@ -65,7 +65,7 @@ const SignUpForm = () => {
               <label className='my-2 block text-center'>username</label>
               <input
                 {...username.input}
-                className='my-2 mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='jack'
               />
               <p className='text-center text-red-600'>
@@ -76,7 +76,7 @@ const SignUpForm = () => {
               <label className='my-2 block text-center'>password</label>
               <input
                 {...password.input}
-                className='my-2 mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='****'
               />
               <p className='text-center text-red-600'>
@@ -87,7 +87,7 @@ const SignUpForm = () => {
               <label className='my-2 block text-center'>confirm password</label>
               <input
                 {...confirmPassword.input}
-                className='my-2 mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='****'
               />
               <p className='text-center text-red-600'>

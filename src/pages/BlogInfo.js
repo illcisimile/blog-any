@@ -4,14 +4,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Container from '../components/Container';
-import Loading from '../components/Loading';
 
 const BlogInfo = ({ blog }) => {
   const user = useSelector(({ user }) => user);
-
-  if (!blog) {
-    return <Loading />;
-  }
 
   return (
     <>

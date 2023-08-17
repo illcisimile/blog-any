@@ -49,10 +49,7 @@ const App = () => {
       <Navbar user={user} />
       <Routes>
         <Route path='/' element={<BlogList blogs={blogs} />} />
-        <Route
-          path='/new-blog'
-          element={user ? <BlogForm /> : <Navigate replace to='/signin' />}
-        />
+        <Route path='/blog/:blogId' element={<BlogInfo blog={foundBlog} />} />
         <Route
           path='/signin'
           element={!user ? <SignInForm /> : <Navigate replace to='/' />}
@@ -61,14 +58,23 @@ const App = () => {
           path='/signup'
           element={!user ? <SignUpForm /> : <Navigate replace to='/' />}
         />
-        <Route path='/blog/:blogId' element={<BlogInfo blog={foundBlog} />} />
         <Route
-          path='/profile/:username'
-          element={<Profile userBlogs={foundUserBlogs} />}
+          path='/new-blog'
+          element={user ? <BlogForm /> : <Navigate replace to='/' />}
         />
         <Route
           path='/update/:blogId'
-          element={<BlogUpdate blog={foundUpdateBlog} />}
+          element={
+            user ? (
+              <BlogUpdate blog={foundUpdateBlog} />
+            ) : (
+              <Navigate replace to='/' />
+            )
+          }
+        />
+        <Route
+          path='/profile/:username'
+          element={<Profile userBlogs={foundUserBlogs} />}
         />
       </Routes>
     </>

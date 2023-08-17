@@ -10,9 +10,11 @@ const BlogList = ({ blogs }) => {
         <title>home | blog: any</title>
       </Helmet>
       <Container semantic='main'>
-        {blogs.map((blog) => (
-          <Blog key={blog.id} blog={blog} />
-        ))}
+        {[...blogs]
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .map((blog) => (
+            <Blog key={blog.id} blog={blog} />
+          ))}
       </Container>
     </>
   );

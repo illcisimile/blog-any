@@ -31,7 +31,9 @@ const SignInForm = () => {
         toast.error(error.response.data.error);
         const validationError = error.response.data.error;
         usernameMessage.set(validationError.username);
-        passwordMessage.set(validationError.password);
+        passwordMessage.set(
+          validationError.password || error.response.data.error,
+        );
       });
   };
 
@@ -48,7 +50,7 @@ const SignInForm = () => {
               <label className='block text-center'>username</label>
               <input
                 {...username.input}
-                className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='jack'
               />
               <p className='text-center text-red-600'>
@@ -59,7 +61,7 @@ const SignInForm = () => {
               <label className='block text-center'>password</label>
               <input
                 {...password.input}
-                className='mt-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
+                className='my-2 w-96 rounded-md border-2 border-gray-300 px-3 py-2 text-center placeholder-gray-400 focus:outline-none'
                 placeholder='****'
               />
               <p className='text-center text-red-600'>

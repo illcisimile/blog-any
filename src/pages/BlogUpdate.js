@@ -2,15 +2,16 @@ import { Helmet } from 'react-helmet-async';
 import { useField, useError } from '../hooks';
 import { useEffect, useState, useRef } from 'react';
 import { updateBlog } from '../reducers/blogReducer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Container from '../components/Container';
 import BlogEditor from '../components/BlogEditor';
-import Loading from '../components/Loading';
 
 const BlogUpdate = ({ blog }) => {
+  const user = useSelector(({ user }) => user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,18 +28,16 @@ const BlogUpdate = ({ blog }) => {
   const tagMessage = useError();
 
   useEffect(() => {
-    if (blog) {
-      title.set(blog.title);
-      description.set(blog.description);
-      content.set(blog.content);
-      setTags(tags.concat(blog.tags));
+    if (user.username !== blog.author.username) {
+      navigate('/');
     }
+
+    title.set(blog.title);
+    description.set(blog.description);
+    content.set(blog.content);
+    setTags(tags.concat(blog.tags));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blog]);
-
-  if (!blog) {
-    return <Loading />;
-  }
 
   const handleUpdate = (event) => {
     event.preventDefault();
