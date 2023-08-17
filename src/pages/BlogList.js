@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import { useState } from 'react';
+import { useMatch } from 'react-router-dom';
 
 import Blog from '../components/Blog';
 import Container from '../components/Container';
 
-const BlogList = ({ blogs }) => {
+const BlogList = ({ blogs, tag }) => {
   const [sort, setSort] = useState('latest');
 
   const handleSort = () => {
@@ -16,10 +17,16 @@ const BlogList = ({ blogs }) => {
       ? [...blogs].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       : blogs;
 
+  const blogsWithTagMatch = useMatch('/tag/:tag');
+
   return (
     <>
       <Helmet>
-        <title>home | blog: any</title>
+        <title>
+          {blogsWithTagMatch === null
+            ? 'home | blog: any'
+            : `${blogsWithTagMatch.params.tag} | blog: any`}
+        </title>
       </Helmet>
       <Container semantic='main'>
         <div className='flex justify-end px-8'>
