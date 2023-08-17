@@ -3,23 +3,23 @@ const Container = ({ children, semantic }) => {
     case 'header':
       return (
         <header>
-          <div className='container mx-auto max-w-4xl'>{children}</div>
+          <div className='mx-auto max-w-4xl'>{children}</div>
         </header>
       );
     case 'main':
       return (
         <main>
-          <div className='container mx-auto max-w-4xl'>{children}</div>
+          <div className='mx-auto max-w-4xl'>{children}</div>
         </main>
       );
     case 'footer':
       return (
         <footer>
-          <div className='container mx-auto max-w-4xl'>{children}</div>
+          <div className='mx-auto max-w-4xl'>{children}</div>
         </footer>
       );
     default:
-      <div className='container mx-auto max-w-4xl'>{children}</div>;
+      <div className='mx-auto max-w-4xl'>{children}</div>;
   }
 };
 
