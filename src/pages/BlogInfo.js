@@ -43,7 +43,6 @@ const BlogInfo = ({ blog }) => {
               </Link>
             ))}
           </div>
-
           <div className='my-4'>
             <p className='text-sm italic'>
               created on {formatDate(blog.createdAt).toLowerCase()}
