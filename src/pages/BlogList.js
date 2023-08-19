@@ -5,6 +5,7 @@ import { useMatch } from 'react-router-dom';
 import Blog from '../components/Blog';
 import Container from '../components/Container';
 import SortButton from '../components/SortButton';
+import BlogSkeleton from '../components/BlogSkeleton';
 
 const BlogList = ({ blogs }) => {
   const [sort, setSort] = useState('latest');
@@ -30,10 +31,16 @@ const BlogList = ({ blogs }) => {
         </title>
       </Helmet>
       <Container semantic='main'>
-        <SortButton sort={sort} handleSort={handleSort} />
-        {sortedBlogs.map((blog) => (
-          <Blog key={blog.id} blog={blog} />
-        ))}
+        {sortedBlogs.length > 0 ? (
+          <>
+            <SortButton sort={sort} handleSort={handleSort} />
+            {sortedBlogs.map((blog) => (
+              <Blog key={blog.id} blog={blog} />
+            ))}
+          </>
+        ) : (
+          <BlogSkeleton />
+        )}
       </Container>
     </>
   );

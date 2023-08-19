@@ -11,7 +11,7 @@ import BlogInfo from './pages/BlogInfo';
 import BlogUpdate from './pages/BlogUpdate';
 
 import Navbar from './components/Navbar';
-import BreakpointIndicator from './components/BreakpointIndicator';
+// import BreakpointIndicator from './components/BreakpointIndicator';
 import SignUpForm from './pages/SignUpForm';
 import Profile from './pages/Profile';
 
@@ -48,7 +48,7 @@ const App = () => {
 
   return (
     <>
-      <BreakpointIndicator />
+      {/* <BreakpointIndicator /> */}
       <Navbar user={user} />
       <Routes>
         <Route path='/' element={<BlogList blogs={blogs} />} />

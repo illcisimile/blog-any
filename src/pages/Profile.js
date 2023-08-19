@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Container from '../components/Container';
 import Blog from '../components/Blog';
 import SortButton from '../components/SortButton';
+import BlogSkeleton from '../components/BlogSkeleton';
 
 const Profile = ({ userBlogs }) => {
   const [sort, setSort] = useState('latest');
@@ -25,10 +26,16 @@ const Profile = ({ userBlogs }) => {
         <title>profile | blog: any</title>
       </Helmet>
       <Container semantic='main'>
-        <SortButton sort={sort} handleSort={handleSort} />
-        {sortedUserBlogs.map((userBlog) => (
-          <Blog key={userBlog.id} blog={userBlog} />
-        ))}
+        {sortedUserBlogs.length > 0 ? (
+          <>
+            <SortButton sort={sort} handleSort={handleSort} />
+            {sortedUserBlogs.map((blog) => (
+              <Blog key={blog.id} blog={blog} />
+            ))}
+          </>
+        ) : (
+          <BlogSkeleton />
+        )}
       </Container>
     </>
   );
