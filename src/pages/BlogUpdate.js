@@ -2,24 +2,21 @@ import { Helmet } from 'react-helmet-async';
 import { useField, useError } from '../hooks';
 import { useEffect, useState, useRef } from 'react';
 import { updateBlog } from '../reducers/blogReducer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import Container from '../components/Container';
 import BlogEditor from '../components/BlogEditor';
 
-const BlogUpdate = ({ blog }) => {
-  const user = useSelector(({ user }) => user);
-
+const BlogUpdate = ({ blog, user }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const title = useField('text');
-  const description = useField('text');
-  const content = useField('text');
+  const title = useField('text', blog.title);
+  const description = useField('text', blog.description);
+  const content = useField('text', blog.content);
   const tag = useField('text');
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(blog.tags);
   const tagRef = useRef(null);
 
   const titleMessage = useError();
@@ -31,13 +28,7 @@ const BlogUpdate = ({ blog }) => {
     if (user.username !== blog.author.username) {
       navigate('/');
     }
-
-    title.set(blog.title);
-    description.set(blog.description);
-    content.set(blog.content);
-    setTags(tags.concat(blog.tags));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blog]);
+  }, [blog.author.username, navigate, user.username]);
 
   const handleUpdate = (event) => {
     event.preventDefault();
@@ -52,7 +43,6 @@ const BlogUpdate = ({ blog }) => {
     dispatch(updateBlog(blog.id, updatedBlogObject))
       .then(() => navigate(`/blog/${blog.id}`))
       .catch((error) => {
-        toast.error('error updating blog');
         const validationError = error.response.data.error;
         titleMessage.set(validationError.title);
         descriptionMessage.set(validationError.description);

@@ -3,7 +3,6 @@ import { useField, useError } from '../hooks';
 import { useDispatch } from 'react-redux';
 import { signInUser } from '../reducers/userReducer';
 import { useNavigate, Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import Container from '../components/Container';
 
@@ -28,7 +27,6 @@ const SignInForm = () => {
     dispatch(signInUser(credentials))
       .then(() => navigate('/'))
       .catch((error) => {
-        toast.error(error.response.data.error);
         const validationError = error.response.data.error;
         usernameMessage.set(validationError.username);
         passwordMessage.set(

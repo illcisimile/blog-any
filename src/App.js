@@ -14,7 +14,6 @@ import Navbar from './components/Navbar';
 import BreakpointIndicator from './components/BreakpointIndicator';
 import SignUpForm from './pages/SignUpForm';
 import Profile from './pages/Profile';
-import ToastNotification from './components/ToastNotification';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -50,16 +49,17 @@ const App = () => {
   return (
     <>
       <BreakpointIndicator />
-      <ToastNotification />
       <Navbar user={user} />
       <Routes>
         <Route path='/' element={<BlogList blogs={blogs} />} />
-        <Route path='/blog/:blogId' element={<BlogInfo blog={foundBlog} />} />
+        <Route
+          path='/blog/:blogId'
+          element={<BlogInfo blog={foundBlog} user={user} />}
+        />
         <Route
           path='/tag/:tag'
           element={<BlogList blogs={foundBlogsWithTag} />}
         />
-
         <Route
           path='/signin'
           element={!user ? <SignInForm /> : <Navigate replace to='/' />}
@@ -76,7 +76,7 @@ const App = () => {
           path='/update/:blogId'
           element={
             user ? (
-              <BlogUpdate blog={foundUpdateBlog} />
+              <BlogUpdate blog={foundUpdateBlog} user={user} />
             ) : (
               <Navigate replace to='/' />
             )

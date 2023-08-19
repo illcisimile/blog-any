@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useField, useError } from '../hooks';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import Container from '../components/Container';
 import { useDispatch } from 'react-redux';
@@ -34,7 +33,6 @@ const SignUpForm = () => {
     dispatch(registerUser(credentials))
       .then(() => navigate('/'))
       .catch((error) => {
-        toast.error('error signing up');
         const validationError = error.response.data.error;
         nameMessage.set(validationError.name);
         usernameMessage.set(validationError.username);

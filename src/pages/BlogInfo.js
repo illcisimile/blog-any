@@ -1,13 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { formatDate } from '../utils';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import Container from '../components/Container';
 
-const BlogInfo = ({ blog }) => {
-  const user = useSelector(({ user }) => user);
-
+const BlogInfo = ({ blog, user }) => {
   return (
     <>
       <Helmet>

@@ -8,9 +8,11 @@ import { newBlog } from '../reducers/blogReducer';
 
 import Container from '../components/Container';
 import BlogEditor from '../components/BlogEditor';
-import { toast } from 'react-toastify';
 
 const BlogForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const title = useField('text');
   const description = useField('text');
   const content = useField('text');
@@ -22,9 +24,6 @@ const BlogForm = () => {
   const descriptionMessage = useError();
   const contentMessage = useError();
   const tagMessage = useError();
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handlePublish = (event) => {
     event.preventDefault();
@@ -39,7 +38,6 @@ const BlogForm = () => {
     dispatch(newBlog(blog))
       .then(() => navigate('/'))
       .catch((error) => {
-        toast.error('error creating a new blog');
         const validationError = error.response.data.error;
         titleMessage.set(validationError.title);
         descriptionMessage.set(validationError.description);
