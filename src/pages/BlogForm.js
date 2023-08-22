@@ -84,6 +84,7 @@ const BlogForm = () => {
                 {...title.input}
                 className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='Hello, world!'
+                tabIndex='1'
               />
               <p className='text-red-600'>{titleMessage.error}</p>
             </div>
@@ -93,6 +94,7 @@ const BlogForm = () => {
                 {...description.input}
                 className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='Some say polymath; some say dilettante. I specialize in everything.'
+                tabIndex='2'
               />
               <p className='text-red-600'>{descriptionMessage.error}</p>
             </div>
@@ -110,6 +112,7 @@ const BlogForm = () => {
                 {...tag.input}
                 className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='press Enter to add a new tag'
+                tabIndex='3'
                 ref={tagRef}
                 onKeyUp={handleTag}
               />
@@ -145,6 +148,7 @@ const BlogForm = () => {
             )}
             <button
               className='w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 hover:bg-black hover:text-white'
+              tabIndex='5'
               type='button'
               onClick={handlePublish}
             >

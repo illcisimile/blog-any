@@ -16,7 +16,7 @@ const SignInForm = () => {
   const usernameMessage = useError();
   const passwordMessage = useError();
 
-  const handleSignIn = async (event) => {
+  const handleSignIn = (event) => {
     event.preventDefault();
 
     const credentials = {

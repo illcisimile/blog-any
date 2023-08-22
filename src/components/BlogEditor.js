@@ -13,6 +13,7 @@ const BlogEditor = ({ html, handleChange }) => {
 
   return (
     <Editor
+      tabIndex='3'
       value={html}
       onChange={handleChange}
       containerProps={{ style: style }}
