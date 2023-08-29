@@ -30,7 +30,7 @@ const BlogInfo = ({ blog, user }) => {
         </title>
       </Helmet>
       <Container semantic='main'>
-        <div className='p-8'>
+        <div className='p-4'>
           <div className='flex flex-wrap items-start justify-between gap-2'>
             <div>
               <h2 className='text-lg font-semibold'>{blog.title} </h2>

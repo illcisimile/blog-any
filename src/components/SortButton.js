@@ -1,6 +1,6 @@
 const SortButton = ({ sort, handleSort }) => {
   return (
-    <div className='flex justify-end px-8'>
+    <div className='p-4'>
       <button
         type='button'
         className='flex gap-1 rounded-md border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white'

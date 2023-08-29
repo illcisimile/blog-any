@@ -16,7 +16,7 @@ const Navbar = ({ user }) => {
 
   return (
     <Container semantic='header'>
-      <nav className='mb-8 flex flex-wrap justify-between p-8'>
+      <nav className='mb-8 flex flex-wrap justify-between p-4'>
         <div>
           <h1 className='text-2xl font-bold'>
             <Link to='/'>blog: any</Link>

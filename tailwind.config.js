@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Jetbrains Mono', 'sans-serif'],
+        sans: ['JetBrains Mono', 'sans-serif'],
       },
     },
   },

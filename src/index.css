@@ -2,36 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* JetBrains Mono */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-
-/* html {
-  @apply bg-slate-200;
-} */
-
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-label,
-a {
-  @apply text-white;
-} */
-
-/* a {
-  @apply text-white hover:underline;
-} */
 
 a {
   @apply hover:underline;
 }
-
-/* p {
-  @apply text-gray-400;
-} */
-
-/* label {
-  @apply text-white;
-} */

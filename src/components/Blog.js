@@ -4,7 +4,7 @@ import { formatDate } from '../utils';
 const Blog = ({ blog }) => {
   return (
     <>
-      <div className='border-b-2 border-dashed border-black p-8'>
+      <div className='border-b-2 border-dashed border-black p-4'>
         <h2 className='text-lg font-semibold'>
           <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
         </h2>

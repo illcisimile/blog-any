@@ -80,7 +80,7 @@ const BlogUpdate = ({ blog, user }) => {
         <title>update blog {blog.title}</title>
       </Helmet>
       <Container semantic='main'>
-        <div className='p-8'>
+        <div className='p-4'>
           <h1 className='mb-4 text-center text-xl'>update blog</h1>
           <form>
             <div className='mb-4'>

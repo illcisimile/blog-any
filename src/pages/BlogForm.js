@@ -75,39 +75,41 @@ const BlogForm = () => {
         <title>new blog | blog: any</title>
       </Helmet>
       <Container semantic='main'>
-        <div className='p-8'>
+        <div className='p-4'>
           <h1 className='mb-4 text-center text-xl'>new blog</h1>
           <form>
             <div className='mb-4'>
-              <label className='block'>title</label>
+              <label className='block text-center'>title</label>
               <input
                 {...title.input}
                 className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='Hello, world!'
                 tabIndex='1'
               />
-              <p className='text-red-600'>{titleMessage.error}</p>
+              <p className='text-center text-red-600'>{titleMessage.error}</p>
             </div>
             <div className='mb-4'>
-              <label className='block'>description</label>
+              <label className='block text-center'>description</label>
               <input
                 {...description.input}
                 className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
                 placeholder='Some say polymath; some say dilettante. I specialize in everything.'
                 tabIndex='2'
               />
-              <p className='text-red-600'>{descriptionMessage.error}</p>
+              <p className='text-center text-red-600'>
+                {descriptionMessage.error}
+              </p>
             </div>
             <div className='mb-4'>
-              <label className='block'>content</label>
+              <label className='block text-center'>content</label>
               <BlogEditor
                 html={content.input.value}
                 handleChange={content.input.onChange}
               />
-              <p className='text-red-600'>{contentMessage.error}</p>
+              <p className='text-center text-red-600'>{contentMessage.error}</p>
             </div>
             <div className='mb-4'>
-              <label className='block'>enter tag</label>
+              <label className='block text-center'>enter tag</label>
               <input
                 {...tag.input}
                 className='my-2 w-full rounded-md border-2 border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none'
@@ -116,34 +118,36 @@ const BlogForm = () => {
                 ref={tagRef}
                 onKeyUp={handleTag}
               />
-              <p className='text-red-600'>{tagMessage.error}</p>
+              <p className='text-center text-red-600'>{tagMessage.error}</p>
             </div>
             {tags.length > 0 && (
-              <div className='mb-4 flex w-full flex-wrap items-center gap-2'>
-                <label className='block'>Tags:</label>
-                {tags.map((t) => (
-                  <div
-                    key={t}
-                    className='flex gap-1 rounded-full border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white'
-                    onClick={() => removeTag(t)}
-                  >
-                    <p>{t}</p>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      strokeWidth='1.5'
-                      stroke='currentColor'
-                      className='h-5 w-5'
+              <div className='flex flex-col items-center justify-center'>
+                <label className='block'>tags:</label>
+                <div className='mb-4 mt-2 flex w-full flex-wrap items-center justify-center gap-2'>
+                  {tags.map((t) => (
+                    <div
+                      key={t}
+                      className='flex gap-1 rounded-full border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white'
+                      onClick={() => removeTag(t)}
                     >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M6 18L18 6M6 6l12 12'
-                      />
-                    </svg>
-                  </div>
-                ))}
+                      <p>{t}</p>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        strokeWidth='1.5'
+                        stroke='currentColor'
+                        className='h-5 w-5'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          d='M6 18L18 6M6 6l12 12'
+                        />
+                      </svg>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
             <button

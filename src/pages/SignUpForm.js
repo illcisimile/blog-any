@@ -47,7 +47,7 @@ const SignUpForm = () => {
         <title>sign up | blog: any</title>
       </Helmet>
       <Container semantic='main'>
-        <div className='flex flex-col items-center p-8'>
+        <div className='flex flex-col items-center p-4'>
           <h1 className='mb-8 text-xl'>sign up to get started</h1>
           <form onSubmit={handleRegister}>
             <div className='mb-4'>

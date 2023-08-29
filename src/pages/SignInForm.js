@@ -41,7 +41,7 @@ const SignInForm = () => {
         <title>sign in | blog: any</title>
       </Helmet>
       <Container semantic='main'>
-        <div className='flex flex-col items-center p-8'>
+        <div className='flex flex-col items-center p-4'>
           <h1 className='mb-8 text-xl'>sign in to your account</h1>
           <form onSubmit={handleSignIn}>
             <div className='mb-4'>
